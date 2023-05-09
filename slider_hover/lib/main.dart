@@ -33,6 +33,15 @@ class _MyHomePageState extends State<MyHomePage> {
   double month = 1;
 
   double getLeftAlignment() {
+    // The Idea here follows that:
+    // y = mx + b;
+    // First, we can calculate the slope:
+    // slope = (y2 - y1) / (x2 - x1) = (1 - (-1)) / (12 - 1) = 2/11
+    // Next, we can use one of the points, such as (1, -1), to calculate the y-intercept:
+    // -1 = (2/11)(1) + b
+    // b = -13/11
+    // Therefore, the linear mathematical relationship for the inputs between 1 and 12 is:
+    // y = (2/11)x - 13/11
     return (monthList.first - (-1)) / (monthList.length - 1) * month + -13 / 11;
   }
 
