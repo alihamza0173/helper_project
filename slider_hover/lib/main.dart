@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Align(
                       alignment: const Alignment(0, -0.2),
                       child: Text(
-                        '${month.toInt()} months',
+                        '${month.toInt()} month${month.toInt() == 1 ? "" : "s"}',
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w700,
