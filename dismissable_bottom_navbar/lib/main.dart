@@ -78,18 +78,28 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: SingleChildScrollView(
-        controller: controller,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: color
-              .map((e) => Container(
-                    height: 200,
-                    color: e,
-                  ))
-              .toList(),
-        ),
-      ),
+      body: PageView.builder(
+          itemCount: 3,
+          pageSnapping: true,
+          itemBuilder: (context, index) {
+            return SingleChildScrollView(
+              controller: controller,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: color
+                    .map((e) => Container(
+                          height: 200,
+                          width: double.maxFinite,
+                          color: e,
+                          alignment: Alignment.center,
+                          child: Text(
+                            index.toString(),
+                          ),
+                        ))
+                    .toList(),
+              ),
+            );
+          }),
       bottomNavigationBar: AnimatedContainer(
         duration: const Duration(seconds: 1),
         height: height,
