@@ -36,6 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
   late List<Color> color;
   late ScrollController controller;
   double height = 80;
+  int index = 0;
+  late PageController pageController;
 
   List<Color> getRandomColors(int count) {
     List<Color> colors = [];
@@ -54,6 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+
+    pageController = PageController();
 
     color = getRandomColors(10);
     controller = ScrollController()
@@ -79,8 +83,10 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: PageView.builder(
+          controller: pageController,
           itemCount: 3,
           pageSnapping: true,
+          onPageChanged: (value) => setState(() => index = value),
           itemBuilder: (context, index) {
             return SingleChildScrollView(
               controller: controller,
@@ -93,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: e,
                           alignment: Alignment.center,
                           child: Text(
-                            index.toString(),
+                            'Part of page $index',
                           ),
                         ))
                     .toList(),
@@ -105,23 +111,46 @@ class _MyHomePageState extends State<MyHomePage> {
         height: height,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: const [
-            Icon(
-              Icons.home,
-              size: 30,
+          children: [
+            IconButton(
+              onPressed: () => pageController.animateToPage(
+                0,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInBack,
+              ),
+              icon: Icon(
+                Icons.home,
+                size: 30,
+                color: index == 0 ? Colors.blue : Colors.grey,
+              ),
             ),
-            Icon(
-              Icons.wallet,
-              size: 30,
+            IconButton(
+              onPressed: () => pageController.animateToPage(
+                1,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInBack,
+              ),
+              icon: Icon(
+                Icons.wallet,
+                size: 30,
+                color: index == 1 ? Colors.blue : Colors.grey,
+              ),
             ),
-            Icon(
-              Icons.settings,
-              size: 30,
+            IconButton(
+              onPressed: () => pageController.animateToPage(
+                2,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInBack,
+              ),
+              icon: Icon(
+                Icons.settings,
+                size: 30,
+                color: index == 2 ? Colors.blue : Colors.grey,
+              ),
             ),
           ],
         ),
       ),
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
