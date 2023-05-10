@@ -91,10 +91,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 onChanged: (value) => setState(() => month = value),
               ),
             ),
-            ElevatedButton(
-              onPressed: () => setState(() {}),
-              child: const Text('presss'),
-            ),
           ],
         ),
       ),
