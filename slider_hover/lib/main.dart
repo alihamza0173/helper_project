@@ -45,36 +45,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return (monthList.first - (-1)) / (monthList.length - 1) * month + -13 / 11;
   }
 
-  Align test() {
-    print('funcrtion');
-    return Align(
-      alignment: Alignment(getLeftAlignment(), 0),
-      child: SizedBox(
-        height: 40,
-        width: 120,
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: CustomPaint(
-                painter: HoverPainter(),
-              ),
-            ),
-            Align(
-              alignment: const Alignment(0, -0.2),
-              child: Text(
-                '${month.toInt()} month${month.toInt() == 1 ? "" : "s"}',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,8 +56,32 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            test(),
-            const MyWidget(),
+            Align(
+              alignment: const Alignment(0, 0),
+              child: SizedBox(
+                height: 40,
+                width: 120,
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: CustomPaint(
+                        painter: HoverPainter(),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment(getLeftAlignment(), -0.2),
+                      child: Text(
+                        '$month month${month == 1 ? '' : 's'}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Slider.adaptive(
@@ -140,39 +134,4 @@ class HoverPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
-}
-
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    print('CLASS');
-    return Align(
-      alignment: const Alignment(0, 0),
-      child: SizedBox(
-        height: 40,
-        width: 120,
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: CustomPaint(
-                painter: HoverPainter(),
-              ),
-            ),
-            const Align(
-              alignment: Alignment(0, -0.2),
-              child: Text(
-                'frref',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
 }
