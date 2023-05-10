@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     //Putting y = mx+b
     //y = ((y2 - y1) / (x2 - x1)) * month + -13/11
-    return (monthList.first - (-1)) / (monthList.length - 1) * month + -13 / 11;
+    return (2 / 11) * month - 13 / 11;
   }
 
   @override
