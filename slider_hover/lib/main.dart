@@ -42,6 +42,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // b = -13/11
     // Therefore, the linear mathematical relationship for the inputs between 1 and 12 is:
     // y = (2/11)x - 13/11
+    //m = slope
+    //x = month
+    //b = -13/11
+
+    //Putting y = mx+b
+    //y = ((y2 - y1) / (x2 - x1)) * month + -13/11
     return (monthList.first - (-1)) / (monthList.length - 1) * month + -13 / 11;
   }
 
