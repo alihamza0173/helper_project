@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Align(
-              alignment: const Alignment(0, 0),
+              alignment: Alignment(getLeftAlignment(), 0),
               child: SizedBox(
                 height: 40,
                 width: 120,
@@ -69,9 +69,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Align(
-                      alignment: Alignment(getLeftAlignment(), -0.2),
+                      alignment: const Alignment(0, -0.2),
                       child: Text(
-                        '$month month${month == 1 ? '' : 's'}',
+                        '${month.toInt()} month${month == 1 ? '' : 's'}',
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w700,
