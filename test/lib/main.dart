@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:path_provider/path_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,18 +36,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late FocusNode focusNode;
-
-  @override
-  void initState() {
-    super.initState();
-    focusNode = FocusNode();
+  Future<File> getFileFromAsset(String assetPath) async {
+    final byteData = await rootBundle.load(assetPath);
+    final file = File(
+        '${(await getTemporaryDirectory()).path}/${assetPath.split('/').last}');
+    await file.writeAsBytes(byteData.buffer.asUint8List(), flush: true);
+    return file;
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    focusNode.dispose();
+  Future<void> downloadFile(File file) async {
+    late Directory directory;
+    if (Platform.isAndroid) {
+      var path = await ExternalPath.getExternalStoragePublicDirectory(
+          ExternalPath.DIRECTORY_DOWNLOADS);
+
+      directory = Directory(path);
+    } else if (Platform.isIOS) {
+      directory = await getApplicationDocumentsDirectory();
+    }
+    final filePath = '${directory.path}/${file.path.split('/').last}';
+    File(filePath).createSync(recursive: true);
+    file.copySync(filePath);
+
+    print(filePath);
   }
 
   @override
@@ -55,47 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () {
-            showModalBottomSheet(
-              isScrollControlled: true,
-              context: context,
-              builder: (_) => SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: AnimatedSize(
-                  duration: const Duration(milliseconds: 300),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      TextField(
-                        focusNode: focusNode,
-                      ),
-                      const Text(
-                        'Hello World',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      const Text(
-                        'Hello World',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      const Text(
-                        'Hello World',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      SizedBox(
-                        height: focusNode.hasFocus
-                            ? MediaQuery.of(context).size.height * 0.5
-                            : kBottomNavigationBarHeight,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
+          onPressed: () async {
+            var file = await getFileFromAsset('assets/empty.png');
+            downloadFile(file);
           },
-          child: const Text('Open'),
+          child: const Text('Download'),
         ),
       ),
     );
