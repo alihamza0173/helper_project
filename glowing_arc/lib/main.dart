@@ -74,7 +74,7 @@ class ArcPainter extends CustomPainter {
     shadowPaint.strokeCap = StrokeCap.round;
     frontColoredPaint.strokeWidth = 18;
     shadowPaint.strokeWidth = 18;
-    shadowPaint.imageFilter = ImageFilter.blur(sigmaX: 10,sigmaY: 10);
+    shadowPaint.imageFilter = ImageFilter.blur(sigmaX: 10, sigmaY: 10);
 
     List<Color> color = [Colors.green, Colors.orange, Colors.purple];
 
