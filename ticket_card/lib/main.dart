@@ -70,9 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
               width: MediaQuery.of(context).size.width * 0.6,
               child: ClipPath(
                 clipper: TicketPath(),
-                child: const Card(
+                child: Container(
                   color: Colors.white,
-                  child: Icon(
+                  child: const PIcon(
                     Icons.percent,
                     color: Colors.brown,
                     size: 150,
