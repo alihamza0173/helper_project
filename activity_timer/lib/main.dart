@@ -1,16 +1,38 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
+RestartableTimer? timer;
+
+class MyApp2 extends StatelessWidget {
+  const MyApp2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      builder: (context, child) {
+        return Material(
+          child: InkWell(
+            onTap: () => timer?.reset(),
+            child: const MyHomePage(
+              title: 'With Material.router',
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +41,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Activity Logout'),
+      home: Material(
+        child: InkWell(
+          onTap: () => timer?.reset(),
+          child: const MyHomePage(
+            title: 'With Material',
+          ),
+        ),
+      ),
     );
   }
 }
@@ -35,7 +64,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   AppLifecycleState? _lastLifecycleState;
-  Timer? _timer;
   int kTimeoutInSeconds = const Duration(seconds: 5).inSeconds;
   String text = 'Alive';
 
@@ -65,9 +93,9 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   void _keepAlive(bool visible) {
     if (visible) {
-      _timer?.cancel();
+      timer?.cancel();
     } else {
-      _timer = Timer(Duration(seconds: kTimeoutInSeconds), () {
+      timer = RestartableTimer(Duration(seconds: kTimeoutInSeconds), () {
         // Do whatever the fuck you want, like logging a user out
         text = 'Logged out';
         log('LOGGED OUT');
@@ -79,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    _timer?.cancel();
+    timer?.cancel();
     super.dispose();
   }
 
