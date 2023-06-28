@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 clipper: TicketPath(),
                 child: Container(
                   color: Colors.white,
-                  child: const PIcon(
+                  child: const Icon(
                     Icons.percent,
                     color: Colors.brown,
                     size: 150,
