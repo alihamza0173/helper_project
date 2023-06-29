@@ -53,15 +53,17 @@ class _MyHomePageState extends State<MyHomePage> {
             selectedList.add(index);
           }),
           onTap: () {
-            if (selectedList.contains(index)) {
-              selectedList.remove(index);
-            } else {
-              selectedList.add(index);
+            if (enteredMulti) {
+              if (selectedList.contains(index)) {
+                selectedList.remove(index);
+              } else {
+                selectedList.add(index);
+              }
+              if (selectedList.isEmpty) {
+                enteredMulti = false;
+              }
+              setState(() {});
             }
-            if (selectedList.isEmpty) {
-              enteredMulti = false;
-            }
-            setState(() {});
           },
           child: ListTile(
             leading: (enteredMulti && selectedList.contains(index))
