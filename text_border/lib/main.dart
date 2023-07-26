@@ -55,6 +55,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late FocusNode focusNode;
+  bool show = false;
+
+  @override
+  void initState() {
+    super.initState();
+    focusNode = FocusNode()
+      ..addListener(() {
+        if (focusNode.hasFocus) {
+          show = true;
+        } else {
+          show = false;
+        }
+        setState(() {});
+      });
+  }
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -108,6 +131,51 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                height: 70,
+                child: Stack(
+                  children: [
+                    Card(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      shadowColor: Colors.black,
+                      elevation: 4,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 15,
+                        ),
+                        child: Center(
+                          child: TextField(
+                            focusNode: focusNode,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    if (show)
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          height: 3,
+                          width: MediaQuery.sizeOf(context).width * 0.78,
+                          decoration: ShapeDecoration(
+                            color: Colors.cyan,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               )
