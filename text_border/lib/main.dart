@@ -106,102 +106,104 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              SizedBox(
-                height: 70,
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        height: 60,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            10,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Positioned(
-                      left: 10,
-                      child: Text(
-                        'Connect Manager  ',
-                        style: TextStyle(
-                          backgroundColor: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                height: 70,
-                child: Stack(
-                  children: [
-                    Card(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      shadowColor: Colors.black,
-                      elevation: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 15,
-                        ),
-                        child: Center(
-                          child: TextField(
-                            focusNode: focusNode,
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    if (show)
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                SizedBox(
+                  height: 70,
+                  child: Stack(
+                    children: [
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
-                          height: 3,
-                          width: MediaQuery.sizeOf(context).width * 0.78,
-                          decoration: ShapeDecoration(
-                            color: Colors.cyan,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
+                          height: 60,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black,
+                            ),
+                            borderRadius: BorderRadius.circular(
+                              10,
                             ),
                           ),
                         ),
                       ),
-                  ],
+                      const Positioned(
+                        left: 10,
+                        child: Text(
+                          'Connect Manager  ',
+                          style: TextStyle(
+                            backgroundColor: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Wrap(
-                alignment: WrapAlignment.spaceBetween,
-                runSpacing: 20,
-                children: [
-                  for (int i = 0; i < 18; i++)
-                    if (i.isOdd)
-                      const SizedBox(
-                        width: 100,
-                      )
-                    else
-                      yourContent(),
-                ],
-              )
-            ],
+                const SizedBox(
+                  height: 30,
+                ),
+                SizedBox(
+                  height: 70,
+                  child: Stack(
+                    children: [
+                      Card(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        shadowColor: Colors.black,
+                        elevation: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 15,
+                          ),
+                          child: Center(
+                            child: TextField(
+                              focusNode: focusNode,
+                              decoration: const InputDecoration(
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      if (show)
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            height: 3,
+                            width: MediaQuery.sizeOf(context).width * 0.78,
+                            decoration: ShapeDecoration(
+                              color: Colors.cyan,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Wrap(
+                  alignment: WrapAlignment.spaceBetween,
+                  runSpacing: 20,
+                  children: [
+                    for (int i = 0; i < 18; i++)
+                      if (i.isOdd)
+                        const SizedBox(
+                          width: 100,
+                        )
+                      else
+                        yourContent(),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
