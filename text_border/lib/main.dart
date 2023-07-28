@@ -78,6 +78,12 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  Widget yourContent() => Container(
+        color: Colors.red,
+        width: 100,
+        height: 50,
+      );
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -178,6 +184,22 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                runSpacing: 20,
+                children: [
+                  for (int i = 0; i < 18; i++)
+                    if (i.isOdd)
+                      const SizedBox(
+                        width: 100,
+                      )
+                    else
+                      yourContent(),
+                ],
               )
             ],
           ),
