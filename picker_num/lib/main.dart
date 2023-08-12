@@ -12,21 +12,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -53,7 +38,9 @@ class _HomePageState extends State<HomePage> {
         leading: (isPickedMode)
             ? IconButton(
                 onPressed: () {
+                  // This clears our list
                   pickedCards.clear();
+                  // Returns our pick mode to false
                   isPickedMode = false;
                   setState(() {});
                 },
@@ -66,6 +53,9 @@ class _HomePageState extends State<HomePage> {
         actions: [
           if (isPickedMode)
             IconButton(
+              // This can be anything, in a real application
+              // you may want to send a list of selected items
+              // to your backend
               onPressed: () => debugPrint(
                 'The Selected Items are $pickedCards',
               ),
@@ -85,21 +75,30 @@ class _HomePageState extends State<HomePage> {
         ),
         itemBuilder: (context, index) => InkWell(
           onLongPress: () => setState(() {
+            // If the index is not already in our list, add it
             if (!pickedCards.contains(index)) {
               pickedCards.add(index);
             }
+            // set our pick mode to true
+            // A long press is what activates our picked mode
             isPickedMode = true;
           }),
           onTap: () {
+            // The OnTap should only do something if we are in picker mode already
             if (isPickedMode) {
+              // If the index is not already in our list, add it
               if (!pickedCards.contains(index)) {
                 pickedCards.add(index);
               } else {
+                // If it already is and we click again, remove it from the list
+                // ie, unselect it
                 pickedCards.remove(index);
               }
-            }
-            if (pickedCards.isEmpty) {
-              isPickedMode = false;
+              // If after the above is executed and there's nothing in our list again
+              // return us back to the non-picker mode
+              if (pickedCards.isEmpty) {
+                isPickedMode = false;
+              }
             }
             setState(() {});
           },
