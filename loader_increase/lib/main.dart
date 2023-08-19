@@ -7,28 +7,12 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        fontFamily: 'Wallpoet',
         useMaterial3: true,
       ),
       home: const HomePage(),
@@ -58,15 +42,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
     controller2 = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 12),
     );
     animation = Tween<double>(begin: 0, end: 10).animate(controller);
-    animation2 = Tween<double>(begin: 0, end: 10).animate(controller2);
+    animation2 = Tween<double>(begin: 0, end: 100).animate(controller2);
     controller.addListener(() => setState(() {}));
     controller2.addListener(() => setState(() {}));
 
     controller.repeat();
     controller2.repeat();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    controller2.dispose();
+    super.dispose();
   }
 
   @override
@@ -361,7 +352,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                     width: ((MediaQuery.sizeOf(context).width * 0.6) - 10) *
                         animation2.value /
-                        10,
+                        100,
                   ),
                   Container(
                     height: 5,
@@ -416,7 +407,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ).createShader(bounds);
               },
               child: Text(
-                '${(animation2.value.toInt() + 1) * 10} %',
+                '${animation2.value.toInt()} %',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w900,
