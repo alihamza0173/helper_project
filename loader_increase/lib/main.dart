@@ -43,22 +43,30 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late Animation<double> animation;
+  late Animation<double> animation2;
   late AnimationController controller;
+  late AnimationController controller2;
 
   @override
   void initState() {
     super.initState();
     controller = AnimationController(
       vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+    controller2 = AnimationController(
+      vsync: this,
       duration: const Duration(seconds: 5),
     );
     animation = Tween<double>(begin: 0, end: 10).animate(controller);
+    animation2 = Tween<double>(begin: 0, end: 10).animate(controller2);
     controller.addListener(() => setState(() {}));
+    controller2.addListener(() => setState(() {}));
 
     controller.repeat();
+    controller2.repeat();
   }
 
   @override
@@ -352,7 +360,7 @@ class _HomePageState extends State<HomePage>
                       ),
                     ),
                     width: ((MediaQuery.sizeOf(context).width * 0.6) - 10) *
-                        animation.value /
+                        animation2.value /
                         10,
                   ),
                   Container(
@@ -408,7 +416,7 @@ class _HomePageState extends State<HomePage>
                 ).createShader(bounds);
               },
               child: Text(
-                '${(animation.value.toInt() + 1) * 10} %',
+                '${(animation2.value.toInt() + 1) * 10} %',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w900,
