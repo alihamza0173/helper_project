@@ -62,6 +62,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    const Gradient gradient = LinearGradient(
+      colors: [
+        Colors.blue,
+        Colors.purple,
+      ],
+    );
+    const EdgeInsets horizontalMargin = EdgeInsets.symmetric(horizontal: 5);
+    const EdgeInsets verticalMargin = EdgeInsets.symmetric(vertical: 5);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -77,6 +85,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Loading... Animation Text
             SizedBox(
               height: 50,
               child: Row(
@@ -145,61 +154,52 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ],
               ),
             ),
+            // Loading... Animation Bar
             SizedBox(
-              height: 30,
+              height: 40,
               width: MediaQuery.sizeOf(context).width * 0.6,
               child: Stack(
                 children: [
+                  // Container to fill the Bar
                   Container(
                     margin: const EdgeInsets.all(5),
                     decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.blue,
-                          Colors.purple,
-                        ],
-                      ),
+                      gradient: gradient,
                     ),
                     width: ((MediaQuery.sizeOf(context).width * 0.6) - 10) *
                         animation2.value /
                         100,
                   ),
+                  // Top Container Attached to the Bar
                   Container(
                     height: 5,
                     decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.purple,
-                          Colors.blue,
-                        ],
-                      ),
+                      gradient: gradient,
                     ),
-                    margin: const EdgeInsets.symmetric(horizontal: 5),
+                    margin: horizontalMargin,
                   ),
+                  // Vert Left Container Attached to the Bar
                   Container(
-                    margin: const EdgeInsets.symmetric(vertical: 5),
+                    margin: verticalMargin,
                     color: Colors.purple,
                     width: 5,
                   ),
+                  // Vert Right Container Attached to the Bar
                   Align(
                     alignment: Alignment.centerRight,
                     child: Container(
-                      margin: const EdgeInsets.symmetric(vertical: 5),
+                      margin: verticalMargin,
                       color: Colors.blue,
                       width: 5,
                     ),
                   ),
+                  // Bottom Container Attached to the Bar
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                      margin: horizontalMargin,
                       decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.purple,
-                            Colors.blue,
-                          ],
-                        ),
+                        gradient: gradient,
                       ),
                       height: 5,
                     ),
@@ -209,12 +209,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             ShaderMask(
               shaderCallback: (Rect bounds) {
-                return const LinearGradient(
-                  colors: [
-                    Colors.purple,
-                    Colors.blue,
-                  ],
-                ).createShader(bounds);
+                return gradient.createShader(bounds);
               },
               child: Text(
                 '${animation2.value.toInt()} %',
