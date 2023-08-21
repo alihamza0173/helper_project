@@ -82,255 +82,65 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    alignment:
-                        animation.value.toInt() >= 0 && animation.value < 1
-                            ? Alignment.topCenter
-                            : Alignment.center,
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const SweepGradient(
-                          colors: [
-                            Colors.purple,
-                            Colors.blue,
-                          ],
-                        ).createShader(bounds);
-                      },
-                      child: const Text(
-                        'L',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  AnimatedText(
+                    animation: animation,
+                    text: 'L',
+                    greaterThen: 0,
+                    lessThen: 1,
                   ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    alignment:
-                        animation.value.toInt() >= 0.1 && animation.value < 2
-                            ? Alignment.topCenter
-                            : Alignment.center,
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const SweepGradient(
-                          colors: [
-                            Colors.purple,
-                            Colors.blue,
-                          ],
-                        ).createShader(bounds);
-                      },
-                      child: const Text(
-                        'o',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  AnimatedText(
+                    animation: animation,
+                    text: 'o',
+                    greaterThen: 0.1,
+                    lessThen: 2,
                   ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    alignment:
-                        animation.value.toInt() >= 1.1 && animation.value < 3
-                            ? Alignment.topCenter
-                            : Alignment.center,
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const SweepGradient(
-                          colors: [
-                            Colors.purple,
-                            Colors.blue,
-                          ],
-                        ).createShader(bounds);
-                      },
-                      child: const Text(
-                        'a',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  AnimatedText(
+                    animation: animation,
+                    text: 'a',
+                    greaterThen: 1.1,
+                    lessThen: 3,
                   ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    alignment:
-                        animation.value.toInt() >= 2.1 && animation.value < 4
-                            ? Alignment.topCenter
-                            : Alignment.center,
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const SweepGradient(
-                          colors: [
-                            Colors.purple,
-                            Colors.blue,
-                          ],
-                        ).createShader(bounds);
-                      },
-                      child: const Text(
-                        'd',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  AnimatedText(
+                    animation: animation,
+                    text: 'd',
+                    greaterThen: 2.1,
+                    lessThen: 4,
                   ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    alignment:
-                        animation.value.toInt() >= 3.1 && animation.value < 5
-                            ? Alignment.topCenter
-                            : Alignment.center,
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const SweepGradient(
-                          colors: [
-                            Colors.purple,
-                            Colors.blue,
-                          ],
-                        ).createShader(bounds);
-                      },
-                      child: const Text(
-                        'i',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  AnimatedText(
+                    animation: animation,
+                    text: 'i',
+                    greaterThen: 3.1,
+                    lessThen: 5,
                   ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    alignment:
-                        animation.value.toInt() >= 4.1 && animation.value < 6
-                            ? Alignment.topCenter
-                            : Alignment.center,
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const SweepGradient(
-                          colors: [
-                            Colors.purple,
-                            Colors.blue,
-                          ],
-                        ).createShader(bounds);
-                      },
-                      child: const Text(
-                        'n',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  AnimatedText(
+                    animation: animation,
+                    text: 'n',
+                    greaterThen: 4.1,
+                    lessThen: 6,
                   ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    alignment:
-                        animation.value.toInt() >= 5.1 && animation.value < 7
-                            ? Alignment.topCenter
-                            : Alignment.center,
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const SweepGradient(
-                          colors: [
-                            Colors.purple,
-                            Colors.blue,
-                          ],
-                        ).createShader(bounds);
-                      },
-                      child: const Text(
-                        'g',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  AnimatedText(
+                    animation: animation,
+                    text: 'g',
+                    greaterThen: 5.1,
+                    lessThen: 7,
                   ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    alignment:
-                        animation.value.toInt() >= 6.1 && animation.value < 8
-                            ? Alignment.topCenter
-                            : Alignment.center,
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const SweepGradient(
-                          colors: [
-                            Colors.purple,
-                            Colors.blue,
-                          ],
-                        ).createShader(bounds);
-                      },
-                      child: const Text(
-                        '.',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  AnimatedText(
+                    animation: animation,
+                    text: '.',
+                    greaterThen: 6.1,
+                    lessThen: 8,
                   ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    alignment:
-                        animation.value.toInt() >= 7.1 && animation.value < 9
-                            ? Alignment.topCenter
-                            : Alignment.center,
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const SweepGradient(
-                          colors: [
-                            Colors.purple,
-                            Colors.blue,
-                          ],
-                        ).createShader(bounds);
-                      },
-                      child: const Text(
-                        '.',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  AnimatedText(
+                    animation: animation,
+                    text: '.',
+                    greaterThen: 7.1,
+                    lessThen: 9,
                   ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    alignment:
-                        animation.value.toInt() >= 8.1 && animation.value < 10
-                            ? Alignment.topCenter
-                            : Alignment.center,
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const LinearGradient(
-                          colors: [
-                            Colors.purple,
-                            Colors.blue,
-                          ],
-                        ).createShader(bounds);
-                      },
-                      child: const Text(
-                        '.',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  AnimatedText(
+                    animation: animation,
+                    text: '.',
+                    greaterThen: 8.1,
+                    lessThen: 10,
                   ),
                 ],
               ),
@@ -416,6 +226,50 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class AnimatedText extends StatelessWidget {
+  const AnimatedText({
+    super.key,
+    required this.animation,
+    required this.text,
+    required this.greaterThen,
+    required this.lessThen,
+  });
+
+  final Animation<double> animation;
+  final String text;
+  final double greaterThen;
+  final double lessThen;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      alignment:
+          animation.value.toInt() >= greaterThen && animation.value < lessThen
+              ? Alignment.topCenter
+              : Alignment.center,
+      child: ShaderMask(
+        shaderCallback: (Rect bounds) {
+          return const SweepGradient(
+            colors: [
+              Colors.purple,
+              Colors.blue,
+            ],
+          ).createShader(bounds);
+        },
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w900,
+            color: Colors.white,
+          ),
         ),
       ),
     );
