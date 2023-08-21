@@ -70,6 +70,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
     const EdgeInsets horizontalMargin = EdgeInsets.symmetric(horizontal: 5);
     const EdgeInsets verticalMargin = EdgeInsets.symmetric(vertical: 5);
+    final width = MediaQuery.sizeOf(context).width * 0.6;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -157,7 +158,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             // Loading... Animation Bar
             SizedBox(
               height: 40,
-              width: MediaQuery.sizeOf(context).width * 0.6,
+              width: width * 0.6,
               child: Stack(
                 children: [
                   // Container to fill the Bar
@@ -166,9 +167,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     decoration: const BoxDecoration(
                       gradient: gradient,
                     ),
-                    width: ((MediaQuery.sizeOf(context).width * 0.6) - 10) *
-                        animation2.value /
-                        100,
+                    width: ((width * 0.6) - 10) * animation2.value / 100,
                   ),
                   // Top Container Attached to the Bar
                   Container(
