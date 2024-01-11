@@ -71,6 +71,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     const EdgeInsets horizontalMargin = EdgeInsets.symmetric(horizontal: 5);
     const EdgeInsets verticalMargin = EdgeInsets.symmetric(vertical: 5);
     final width = MediaQuery.sizeOf(context).width * 0.6;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
